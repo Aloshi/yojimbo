@@ -13,7 +13,6 @@ Makefile
 *.make
 
 # Misc
-*.txt
 *.7z
 *.zip
 *.tar.gz
