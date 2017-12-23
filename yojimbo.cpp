@@ -2493,6 +2493,7 @@ namespace yojimbo
             
             if ( usedBits + messageBits > availableBits )
             {
+				yojimbo_printf(YOJIMBO_LOG_LEVEL_INFO, "dropping message that could not be included in UnreliableUnordered");
                 m_messageFactory->ReleaseMessage( message );
                 continue;
             }

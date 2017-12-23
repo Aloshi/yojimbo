@@ -1800,6 +1800,27 @@ namespace yojimbo
             return ( m_bitsWritten + 7 ) / 8;
         }
 
+		struct State {
+			uint64_t scratch;
+			int bitsWritten;
+			int wordIndex;
+			int scratchBits;
+		};
+
+		State GetState() const {
+			return State{
+				m_scratch, m_bitsWritten,
+				m_wordIndex, m_scratchBits
+			};
+		}
+
+		void SetState(const State& s) {
+			m_scratch = s.scratch;
+			m_bitsWritten = s.bitsWritten;
+			m_wordIndex = s.wordIndex;
+			m_scratchBits = s.scratchBits;
+		}
+
     private:
 
         uint32_t * m_data;              ///< The buffer we are writing to, as a uint32_t * because we're writing dwords at a time.
@@ -2216,6 +2237,18 @@ namespace yojimbo
         {
             return m_writer.GetBitsWritten();
         }
+
+		typedef BitWriter::State State;
+
+		State GetState() const
+		{
+			return m_writer.GetState();
+		}
+
+		void SetState(const State& state)
+		{
+			m_writer.SetState(state);
+		}
 
     private:
 
