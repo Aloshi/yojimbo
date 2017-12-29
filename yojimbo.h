@@ -1808,10 +1808,12 @@ namespace yojimbo
 		};
 
 		State GetState() const {
-			return State{
-				m_scratch, m_bitsWritten,
-				m_wordIndex, m_scratchBits
-			};
+			State s;
+			s.scratch = m_scratch;
+			s.bitsWritten = m_bitsWritten;
+			s.wordIndex = m_wordIndex;
+			s.scratchBits = m_scratchBits;
+			return s;
 		}
 
 		void SetState(const State& s) {
@@ -2905,6 +2907,7 @@ namespace yojimbo
      */
 
     #define serialize_uint32( stream, value ) serialize_bits( stream, value, 32 );
+    #define serialize_uint16( stream, value ) serialize_bits( stream, value, 16 );
 
     template <typename Stream> bool serialize_uint64_internal( Stream & stream, uint64_t & value )
     {
