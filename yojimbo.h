@@ -2252,6 +2252,11 @@ namespace yojimbo
 			m_writer.SetState(state);
 		}
 
+		int GetBitsAvailable() const
+		{
+			return m_writer.GetBitsAvailable();
+		}
+
     private:
 
         BitWriter m_writer;                 ///< The bit writer used for all bitpacked write operations.
